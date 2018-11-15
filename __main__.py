@@ -35,5 +35,3 @@ for tag in imgs:
 file.close()
 
 downloader(imgs[0].img['data-src'])
-
-# downloader("https://s1.narvii.com/image/ws45li53clncpxdjivdk7o3wars77rxa_hq.jpg")
