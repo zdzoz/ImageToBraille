@@ -5,14 +5,28 @@ from bs4 import BeautifulSoup as bs
 from downloadImage import downloader
 
 with open("config.yml", 'r') as ymlfile:
-    cfg = yaml.load(ymlfile)
+    url = yaml.load(ymlfile)
 
-url = cfg['url']
+e = 0
+unum = 0
+print("Press Enter to start: ")
+e = input()
+try:
+    if int(e) == 69:
+        unum = 69
+    else:
+        unum = 0
+except:
+    pass
 
+print(f"searching with {url[unum]}")
 print("Search for: ", end="")
 term = input()
 
-result = requests.get(f"{url}{term}")
+if url[unum] == url[0]:
+    result = requests.get(f"{url[unum]}{term}&tbm=isch")
+else:
+    result = requests.get(f"{url[unum]}{term}")
 print(result.status_code)
 
 c = result.content
