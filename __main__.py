@@ -9,7 +9,7 @@ with open("config.yml", 'r') as ymlfile:
 
 e = 0
 unum = 0
-print("Press Enter to start: ")
+print("Press Enter to start: ", end="")
 e = input()
 try:
     if int(e) == 69:
@@ -41,11 +41,12 @@ file = open(os.path.join("temp", "page.html"), "w")
 file.writelines(soup.prettify())
 file.close()
 
-imgs = soup.findAll("a", {"class": "image_wrapper"})
-
-file = open(os.path.join("temp", "imgs.txt"), 'w')
-for tag in imgs:
-    file.write(f"{tag.img['data-src']}\n")
-file.close()
-
-downloader(imgs[0].img['data-src'])
+try:
+    if url[unum] == url[0]:
+        imgs = soup.findAll("img")
+        downloader(imgs[0]['src'])
+    else:
+        imgs = soup.findAll("a", {"class": "image_wrapper"})
+        downloader(imgs[0].img['data-src'])
+except:
+    print("\nERROR: Couldn't find an image to download.")
